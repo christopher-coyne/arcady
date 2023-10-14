@@ -1,4 +1,5 @@
 import {useLoaderData, Link} from '@remix-run/react';
+import {Image} from '@shopify/hydrogen';
 
 import type {
   Product,
@@ -11,8 +12,7 @@ export function meta() {
 }
 
 export async function loader({context}: LoaderArgs) {
-  const collections = await context.storefront.query(COLLECTIONS_QUERY);
-  return {collections};
+  return await context.storefront.query(COLLECTIONS_QUERY);
 }
 
 export default function Index() {
@@ -26,7 +26,20 @@ export default function Index() {
         {collections.nodes.map((collection: Collection) => {
           return (
             <Link to={`/collections/${collection.handle}`} key={collection.id}>
-              {collection.title}
+              <div className="grid gap-4">
+                {collection?.image && (
+                  <Image
+                    alt={`Image of ${collection.title}`}
+                    data={collection.image}
+                    key={collection.id}
+                    sizes="(max-width: 32em) 100vw, 33vw"
+                    crop="center"
+                  />
+                )}
+                <h2 className="whitespace-pre-wrap max-w-prose font-medium text-copy">
+                  {collection.title}
+                </h2>
+              </div>
             </Link>
           );
         })}
@@ -34,15 +47,20 @@ export default function Index() {
     </section>
   );
 }
-
 const COLLECTIONS_QUERY = `#graphql
-  query FeaturedCollections {
-    collections(first: 3, query: "collection_type:smart") {
-      nodes {
-        id
-        title
-        handle
+    query FeaturedCollections {
+      collections(first: 3, query: "collection_type:smart") {
+        nodes {
+          id
+          title
+          handle
+          image {
+            altText
+            width
+            height
+            url
+          }
+        }
       }
     }
-  }
-`;
+  `;
