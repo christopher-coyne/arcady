@@ -12,44 +12,53 @@ export function meta() {
 }
 
 export async function loader({context}: LoaderArgs) {
-  return await context.storefront.query(COLLECTIONS_QUERY);
+  const collections = await context.storefront.query(
+    PRODUCTS_IN_HYDROGEN_COLLECTION_QUERY,
+  );
+  // const featuredProducts = await context.storefront.query(PRODUCTS_QUERY);
+  console.log('all collections ', collections.collections);
+  // const hydrogenProducts = await context.storefront.query(PRODUCT_QUERY);
+  return collections;
 }
 
+// [ 'Men', 'Women', 'Unisex', 'Tops', 'Bottoms', 'Accessories', 'Shoes' ]
 export default function Index() {
   const {collections} = useLoaderData();
+  console.log('collections ', collections);
   return (
     <section className="w-full gap-4">
-      <h2 className="whitespace-pre-wrap max-w-prose font-bold text-lead">
-        Collections
-      </h2>
-      <div className="grid-flow-row grid gap-2 gap-y-6 md:gap-4 lg:gap-6 grid-cols-1 sm:grid-cols-3">
-        {collections.nodes.map((collection: Collection) => {
-          return (
-            <Link to={`/collections/${collection.handle}`} key={collection.id}>
-              <div className="grid gap-4">
-                {collection?.image && (
-                  <Image
-                    alt={`Image of ${collection.title}`}
-                    data={collection.image}
-                    key={collection.id}
-                    sizes="(max-width: 32em) 100vw, 33vw"
-                    crop="center"
-                  />
-                )}
-                <h2 className="whitespace-pre-wrap max-w-prose font-medium text-copy">
-                  {collection.title}
-                </h2>
-              </div>
-            </Link>
-          );
-        })}
+      <h2>Collections</h2>
+      <div>
+        <ul>
+          {collections.nodes.length &&
+            collections.nodes[0].products.edges.map((product: any) => {
+              return (
+                <li key={product.node.id}>
+                  <Link to={`/collections/${collections.nodes[0].handle}`}>
+                    <div>
+                      {product.node.image && (
+                        <Image
+                          alt={`Image of ${product.title}`}
+                          data={product.node.image}
+                          key={product.node.id}
+                          sizes="(max-width: 32em) 100vw, 33vw"
+                          crop="center"
+                        />
+                      )}
+                      <h2>{product.node.title}</h2>
+                    </div>
+                  </Link>
+                </li>
+              );
+            })}
+        </ul>
       </div>
     </section>
   );
 }
 const COLLECTIONS_QUERY = `#graphql
     query FeaturedCollections {
-      collections(first: 3, query: "collection_type:smart") {
+      collections(first: 1, query: "collection_type:smart") {
         nodes {
           id
           title
@@ -64,3 +73,44 @@ const COLLECTIONS_QUERY = `#graphql
       }
     }
   `;
+
+const PRODUCTS_IN_HYDROGEN_COLLECTION_QUERY = `#graphql
+  query ProductsInHydrogenCollection {
+    collections(first: 1, query: "collection_type:smart") {
+      nodes {
+        id
+        title
+        handle
+        products(first: 4) {
+          edges {
+            node {
+              id
+              title
+              handle
+              images(first: 1) {
+                edges {
+                  node {
+                    altText
+                    width
+                    height
+                    src
+                  }
+                }
+              }
+              priceRange {
+                minVariantPrice {
+                  amount
+                  currencyCode
+                }
+                maxVariantPrice {
+                  amount
+                  currencyCode
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;

@@ -1,6 +1,6 @@
 import {LoaderArgs, json} from '@shopify/remix-oxygen';
 import {useLoaderData} from '@remix-run/react';
-import {Image} from '@shopify/hydrogen-react';
+import {Image, Money, ShopPayButton} from '@shopify/hydrogen-react';
 import {ProductOptions} from '~/components/ProductOptions';
 import {assertNullableType} from 'graphql';
 
@@ -68,6 +68,11 @@ export default function ProductHandle() {
 
 const PRODUCT_QUERY = `#graphql
   query product($handle: String!, $selectedOptions: [SelectedOptionInput!]!) {
+    shop {
+      primaryDomain {
+        url
+      }
+    }
     product(handle: $handle) {
       id
       title
@@ -75,7 +80,7 @@ const PRODUCT_QUERY = `#graphql
       vendor
       description
       descriptionHtml
-      featuredImage{
+      featuredImage {
         id
         url
         altText
