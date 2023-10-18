@@ -1,0 +1,9 @@
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1rem;
+}
+
+.product {
+  border: 1px solid red;
+}
