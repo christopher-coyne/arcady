@@ -1,6 +1,7 @@
 import styles from './styles.module.css';
 import {Image} from '@shopify/hydrogen';
 import {Link} from '@remix-run/react';
+import {HydroLink} from '../Link/Link';
 
 export const ImageAndText = ({title, description, link, image}: any) => {
   const replacementImage = {...image};
@@ -10,9 +11,9 @@ export const ImageAndText = ({title, description, link, image}: any) => {
   return (
     <div className={styles.container}>
       <div className={styles.textContainer}>
-        <h2>{title}</h2>
-        <p>{description}</p>
-        <Link to={link}>Find Your Board</Link>
+        <h2 className={styles.title}>{title}</h2>
+        <p className={styles.description}>{description}</p>
+        <HydroLink link={link} title={'Find Your Board'} />
       </div>
       <Image data={replacementImage} />
     </div>

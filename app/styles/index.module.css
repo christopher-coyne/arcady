@@ -1,0 +1,16 @@
+.multimedia {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+
+.multimedia > div {
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 1;
+}
+
+multimedia > div > img {
+  width: 100%;
+  height: auto; /* maintain aspect ratio */
+}

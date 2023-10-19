@@ -1,6 +1,6 @@
 import {useLoaderData} from '@remix-run/react';
 import {LoaderArgs, json} from '@shopify/remix-oxygen';
-import ProductGrid from '../components/ProductGrid';
+import ProductGridTest from '../components/ProductGrid';
 import {getPaginationVariables} from '@shopify/hydrogen';
 
 export async function loader({params, context, request}: any) {
@@ -46,7 +46,7 @@ export default function Collection() {
           </div>
         )}
       </header>
-      <ProductGrid
+      <ProductGridTest
         collection={collection}
         url={`/collections/${collection.handle}`}
       />

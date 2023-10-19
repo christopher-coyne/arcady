@@ -6,6 +6,22 @@
   --header-height: 64px;
   --color-dark: #000;
   --color-light: #fff;
+
+  --color-primary: #e7fb52;
+  --color-background: #1f1f21;
+}
+
+.bg-primary {
+  background-color: var(--color-primary);
+}
+
+.bg-dark {
+  background-color: var(--color-background);
+}
+
+body {
+  background-color: var(--color-background);
+  color: white;
 }
 
 img {

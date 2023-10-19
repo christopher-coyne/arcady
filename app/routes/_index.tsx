@@ -1,6 +1,9 @@
 import {useLoaderData, Link} from '@remix-run/react';
 import {Image} from '@shopify/hydrogen';
 import {Collapsible} from '~/components/Collapsible/Collapsible';
+import styles from '../styles/index.module.css';
+import {Stack} from '~/components/Stack/Stack';
+import {HydroLink} from '~/components/Link/Link';
 import {Item} from '~/components/Collapsible/Item';
 
 import type {
@@ -15,6 +18,7 @@ import {
   featuredProductDescription,
   collapsibleBlurbs,
 } from '~/text/home';
+import {Card} from '~/components/Card/Card';
 
 export function meta() {
   return [{title: 'Hydrogen'}, {description: 'Our Custom Store'}];
@@ -113,15 +117,36 @@ export default function Index() {
           <h2>{featuredProduct.node.handle}</h2>
         </div>
       )}
-      <div id="collapsible-content">
-        <Image
-          data={{
-            url: 'https://cdn.shopify.com/s/files/1/0557/9508/9496/files/finscolored.webp?v=1697662297',
-            altText: 'fins',
-            width: 500,
-          }}
-        />
-        <Collapsible content={collapsibleBlurbs} />
+      <div className={styles.multimedia}>
+        <Card />
+        <div>
+          <Image
+            data={{
+              url: 'https://cdn.shopify.com/s/files/1/0557/9508/9496/files/IMG_7145_1200x_8451a1d3-1698-4245-852a-42136f93a331.webp?v=1697677078',
+            }}
+          />
+        </div>
+        <div>
+          <Image
+            data={{
+              url: 'https://cdn.shopify.com/s/files/1/0557/9508/9496/files/FCS-II-CI-Upright_White_002_1200x_8b6cbd61-36f5-4f4b-8e8f-e8ddc230eb89.webp?v=1697677070',
+            }}
+          />
+        </div>
+      </div>
+      <div className={styles.newArrival}>
+        <Stack orient="h">
+          <div>
+            <Image
+              data={{
+                url: 'https://cdn.shopify.com/s/files/1/0557/9508/9496/files/finscolored.webp?v=1697662297',
+                altText: 'fins',
+                width: 500,
+              }}
+            />
+          </div>
+          <Collapsible content={collapsibleBlurbs} />
+        </Stack>
       </div>
     </section>
   );

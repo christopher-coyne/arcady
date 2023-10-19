@@ -1,3 +1,5 @@
+import React, {ReactNode} from 'react';
+
 type StackProps = {
   orient: 'v' | 'h';
   gap?: string;
@@ -10,5 +12,11 @@ export const Stack = ({orient, gap, children}: StackProps) => {
 
   const style = {display: 'flex', gap: flexGap, flexDirection: direction};
 
-  return <div style={style}>{children}</div>;
+  return (
+    <div style={style}>
+      {React.Children.map(children, (child) => {
+        return <div>{child}</div>;
+      })}
+    </div>
+  );
 };
