@@ -19,6 +19,8 @@ import {
   collapsibleBlurbs,
 } from '~/text/home';
 import {Card} from '~/components/Card/Card';
+import ProductGrid from '~/components/ProductGrid';
+import ProductGridTest from '~/components/ProductGrid/ProductGrid';
 
 export function meta() {
   return [{title: 'Hydrogen'}, {description: 'Our Custom Store'}];
@@ -61,8 +63,8 @@ export default function Index() {
   };
 
   let {collections, featuredCollection, featuredProduct} = useLoaderData();
-  console.log('featured collection ', featuredCollection);
-  console.log('product ', featuredProduct);
+  console.log('collections ', collections);
+
   return (
     <section className="w-full gap-4">
       <ImageAndText
@@ -73,20 +75,23 @@ export default function Index() {
       />
       <h2>Collections</h2>
       <div>
+        {collections.nodes.length && (
+          <ProductGridTest collection={collections.nodes[0].products} />
+        )}
         <ul>
           {collections.nodes.length &&
-            collections.nodes[0].products.edges.map((product: any) => {
-              console.log('data info ', product.node.images.edges[0].node);
+            collections.nodes[0].products.nodes.map((product: any) => {
+              console.log('data info ', product.images.edges[0].node);
               let imageObj = null;
-              if (product.node.images.edges[0]) {
+              if (product.images.edges[0]) {
                 imageObj = {
-                  ...product.node.images.edges[0].node,
-                  url: product.node.images.edges[0].node.src,
+                  ...product.images.edges[0].node,
+                  url: product.images.edges[0].node.src,
                 };
               }
 
               return (
-                <li key={product.node.id}>
+                <li key={product.id}>
                   <Link to={`/collections/${collections.nodes[0].handle}`}>
                     <div>
                       {imageObj && (
@@ -98,7 +103,7 @@ export default function Index() {
                           crop="center"
                         />
                       )}
-                      <h2>{product.node.title}</h2>
+                      <h2>{product.title}</h2>
                     </div>
                   </Link>
                 </li>
@@ -213,8 +218,7 @@ const PRODUCTS_IN_HYDROGEN_COLLECTION_QUERY = `#graphql
         title
         handle
         products(first: 4) {
-          edges {
-            node {
+            nodes {
               id
               title
               handle
@@ -229,6 +233,25 @@ const PRODUCTS_IN_HYDROGEN_COLLECTION_QUERY = `#graphql
                   }
                 }
               }
+              variants(first: 1) {
+                nodes {
+                  id
+                  image {
+                    url
+                    altText
+                    width
+                    height
+                  }
+                  price {
+                    amount
+                    currencyCode
+                  }
+                  compareAtPrice {
+                    amount
+                    currencyCode
+                  }
+                }
+              }
               priceRange {
                 minVariantPrice {
                   amount
@@ -240,7 +263,6 @@ const PRODUCTS_IN_HYDROGEN_COLLECTION_QUERY = `#graphql
                 }
               }
             }
-          }
         }
       }
     }

@@ -12,22 +12,42 @@ export const ProductGrid = ({products}: any) => {
   );
 };
 
+const ProductGridInterior = ({nodes}: any) => {
+  console.log('NODES 2', nodes);
+  if (nodes?.length) {
+    return (
+      <div className={styles.productGrid}>
+        {nodes.map((product: any) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </div>
+    );
+  }
+};
+
 export default function ProductGridTest({collection}: any) {
+  // if no pagination - simply return grid
+  const isPaginated = collection?.products?.pageInfo;
+  if (!isPaginated) {
+    const nodes = collection;
+    console.log('NODES ', nodes);
+    return (
+      <div>
+        <ProductGridInterior nodes={nodes?.nodes} />
+      </div>
+    );
+  }
   return (
-    <section>
+    <section className={styles.productGridContainer}>
       <Pagination connection={collection.products}>
         {({nodes, NextLink, PreviousLink, isLoading}) => (
           <>
             <div>
-              <PreviousLink>
+              <PreviousLink className="link">
                 {isLoading ? 'Loading...' : 'Load previous products'}
               </PreviousLink>
             </div>
-            <div>
-              {nodes.map((product: any) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
-            </div>
+            <ProductGridInterior nodes={nodes} />
             <div>
               <NextLink>
                 {isLoading ? 'Loading...' : 'Load more products'}

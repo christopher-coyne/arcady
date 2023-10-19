@@ -1,0 +1,11 @@
+.cardContainer:hover {
+  border: 1px solid red;
+}
+
+.title {
+  color: white;
+}
+
+.cost {
+  color: white;
+}
