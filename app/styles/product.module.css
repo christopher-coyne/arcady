@@ -1,0 +1,9 @@
+.productContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+
+.productContainer > div {
+  flex: 1;
+}
