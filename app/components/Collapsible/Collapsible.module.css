@@ -1,0 +1,23 @@
+.collapsibleContainer {
+  border: 2px solid yellow;
+  flex-grow: 1;
+  flex-basis: auto;
+  flex-shrink: 1;
+}
+
+.container {
+  border: 1px solid red;
+}
+
+.titleContainer {
+  display: flex;
+  padding: 0.5rem 1rem;
+  background-color: var(--color-primary);
+  color: black;
+  width: 100%;
+}
+
+.titleContainer:hover {
+  background-color: var(--color-primary-hover);
+  cursor: pointer;
+}

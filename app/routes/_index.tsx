@@ -55,9 +55,16 @@ export async function loader({context}: LoaderArgs) {
 
 // [ 'Men', 'Women', 'Unisex', 'Tops', 'Bottoms', 'Accessories', 'Shoes' ]
 export default function Index() {
+  const srcSetOptions = {
+    intervals: 5,
+    startingWidth: 320,
+    incrementSize: 160,
+    placeholderWidth: 32,
+  };
+
   const imageObj = {
+    width: 200,
     altText: 'xyz',
-    width: 750,
     id: 'header-surf',
     url: 'https://cdn.shopify.com/s/files/1/0557/9508/9496/files/surfer_guy.jpg?v=1697649524',
   };
@@ -66,8 +73,9 @@ export default function Index() {
   console.log('collections ', collections);
 
   return (
-    <section className="w-full gap-4">
+    <section>
       <ImageAndText
+        srcSetOptions={srcSetOptions}
         image={imageObj}
         link="/collections/men"
         description={heroDescription}
@@ -139,20 +147,18 @@ export default function Index() {
           />
         </div>
       </div>
-      <div className={styles.newArrival}>
-        <Stack orient="h">
-          <div>
-            <Image
-              data={{
-                url: 'https://cdn.shopify.com/s/files/1/0557/9508/9496/files/finscolored.webp?v=1697662297',
-                altText: 'fins',
-                width: 500,
-              }}
-            />
-          </div>
-          <Collapsible content={collapsibleBlurbs} />
-        </Stack>
-      </div>
+      <Stack orient="h">
+        <div>
+          <Image
+            data={{
+              url: 'https://cdn.shopify.com/s/files/1/0557/9508/9496/files/finscolored.webp?v=1697662297',
+              altText: 'fins',
+              width: 500,
+            }}
+          />
+        </div>
+        <Collapsible content={collapsibleBlurbs} />
+      </Stack>
     </section>
   );
 }

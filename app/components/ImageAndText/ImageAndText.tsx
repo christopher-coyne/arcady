@@ -3,8 +3,15 @@ import {Image} from '@shopify/hydrogen';
 import {Link} from '@remix-run/react';
 import {HydroLink} from '../Link/Link';
 
-export const ImageAndText = ({title, description, link, image}: any) => {
+export const ImageAndText = ({
+  title,
+  description,
+  link,
+  image,
+  srcSetOptions,
+}: any) => {
   const replacementImage = {...image};
+  console.log('replacement image ', replacementImage);
   if (!replacementImage.url && replacementImage.src) {
     replacementImage.url = replacementImage.src;
   }
@@ -15,7 +22,9 @@ export const ImageAndText = ({title, description, link, image}: any) => {
         <p className={styles.description}>{description}</p>
         <HydroLink link={link} title={'Find Your Board'} />
       </div>
-      <Image data={replacementImage} />
+      <div>
+        <Image data={replacementImage} srcSetOptions={srcSetOptions} />
+      </div>
     </div>
   );
 };
