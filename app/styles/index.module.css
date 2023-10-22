@@ -14,3 +14,10 @@ multimedia > div > img {
   width: 100%;
   height: auto; /* maintain aspect ratio */
 }
+
+.stackChild {
+  max-height: 1000px;
+  flex-basis: 50%;
+  flex-grow: 1;
+  flex-shrink: 1;
+}
