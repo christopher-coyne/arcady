@@ -17,6 +17,7 @@ import {
   heroDescription,
   featuredProductDescription,
   collapsibleBlurbs,
+  finCardDescription,
 } from '~/text/home';
 import {Card} from '~/components/Card/Card';
 import ProductGrid from '~/components/ProductGrid';
@@ -67,6 +68,13 @@ export default function Index() {
     altText: 'xyz',
     id: 'header-surf',
     url: 'https://cdn.shopify.com/s/files/1/0557/9508/9496/files/surfer_guy.jpg?v=1697649524',
+  };
+
+  const srcSetOptions2 = {
+    intervals: 5,
+    startingWidth: 320,
+    incrementSize: 1,
+    placeholderWidth: 32,
   };
 
   let {collections, featuredCollection, featuredProduct} = useLoaderData();
@@ -131,7 +139,11 @@ export default function Index() {
         </div>
       )}
       <div className={styles.multimedia}>
-        <Card />
+        <Card
+          description={finCardDescription}
+          title="SWAP FINS ON THE FLY"
+          link="Shop Fins"
+        />
         <div>
           <Image
             data={{
@@ -155,6 +167,7 @@ export default function Index() {
               altText: 'fins',
               width: 500,
             }}
+            srcSetOptions={srcSetOptions2}
           />
         </div>
         <Collapsible content={collapsibleBlurbs} />

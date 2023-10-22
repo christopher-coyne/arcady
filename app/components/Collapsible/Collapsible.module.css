@@ -7,6 +7,8 @@
 
 .container {
   border: 1px solid red;
+  background-color: var(--color-primary);
+  color: black;
 }
 
 .titleContainer {
@@ -15,9 +17,15 @@
   background-color: var(--color-primary);
   color: black;
   width: 100%;
+  box-sizing: border-box;
 }
 
 .titleContainer:hover {
   background-color: var(--color-primary-hover);
+  text-decoration: underline;
   cursor: pointer;
+}
+
+.contentContainer {
+  padding: 0.5rem 1rem;
 }

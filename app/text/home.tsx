@@ -82,3 +82,6 @@ export const collapsibleBlurbs = [
     ),
   },
 ];
+
+export const finCardDescription =
+  'Our tool-free fin system makes it easy to swap fins based on wave conditions or rider ability. It’s the ultimate hack to make any board your go-anywhere machine.';

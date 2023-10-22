@@ -54,6 +54,19 @@ export function links() {
       href: 'https://shop.app',
     },
     {rel: 'icon', type: 'image/svg+xml', href: favicon},
+    {
+      rel: 'preconnect',
+      href: 'https://fonts.googleapis.com',
+    },
+    {
+      rel: 'preconnect',
+      href: 'https://fonts.gstatic.com',
+      crossOrigin: 'anonymous',
+    },
+    {
+      rel: 'preconnect',
+      href: 'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Oswald:wght@400;500;600&display=swap',
+    },
   ];
 }
 

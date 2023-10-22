@@ -22,7 +22,7 @@ export const ImageAndText = ({
         <p className={styles.description}>{description}</p>
         <HydroLink link={link} title={'Find Your Board'} />
       </div>
-      <div>
+      <div className={styles.img}>
         <Image data={replacementImage} srcSetOptions={srcSetOptions} />
       </div>
     </div>

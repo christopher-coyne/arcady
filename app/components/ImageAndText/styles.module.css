@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Oswald:wght@400;500;600&display=swap');
+
 .container {
   display: flex;
   gap: 24px;
@@ -19,6 +21,8 @@
 
 .title {
   font-size: 3.25rem;
+  margin: 0px;
+  font-family: 'Oswald', sans-serif;
 }
 
 .description {
@@ -26,7 +30,8 @@
 }
 
 .img {
-  flex-grow: 0;
+  flex-grow: 1;
   border: 2px solid yellow;
   flex-shrink: 1;
+  flex-basis: 50%;
 }

@@ -8,7 +8,7 @@ type StackProps = {
 
 export const Stack = ({orient, gap, children}: StackProps) => {
   const direction: 'column' | 'row' = orient === 'v' ? 'column' : 'row';
-  const flexGap = gap || '0px';
+  const flexGap = gap || '2rem';
 
   const style = {
     display: 'flex',

@@ -7,7 +7,7 @@
 .multimedia > div {
   flex-grow: 1;
   flex-shrink: 1;
-  flex-basis: 1;
+  flex-basis: 33%;
 }
 
 multimedia > div > img {
