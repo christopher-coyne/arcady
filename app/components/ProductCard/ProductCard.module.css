@@ -1,5 +1,9 @@
 .cardContainer:hover {
-  border: 1px solid red;
+  text-decoration: none;
+}
+
+.cardContainer:hover .title {
+  text-decoration: underline;
 }
 
 .cardContainer {
@@ -14,8 +18,12 @@
   margin: 0px;
 }
 
-.cost {
+.cost,
+.cost:hover,
+.cost:active,
+.cost:visited {
   color: white;
+  text-decoration: none;
 }
 
 .imgContainer {
@@ -23,14 +31,23 @@
 }
 
 .img {
-  flex-grow: 1;
-  height: auto;
+  transition: transform 0.3s ease-in-out; /* Smooth scaling transition */
+  display: block; /* Removes inline-block gaps */
+  width: 100%; /* Makes image responsive */
+  height: auto; /* Maintains aspect ratio */
 }
 
-.testImgContainer {
-  flex-grow: 1;
+.imageWrapper {
+  overflow: hidden;
 }
 
-.testContaienr {
+.cardContainer:hover .img {
+  transform: scale(1.1); /* Scales the image up to 110% of its original size */
+}
+
+.textContainer {
   display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.5rem;
 }

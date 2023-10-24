@@ -19,13 +19,15 @@ export default function ProductCard({product}: any) {
       <div>
         <div>
           {isDiscounted && <label>Sale</label>}
-          <Image
-            data={product.variants.nodes[0].image}
-            alt={product.title}
-            srcSetOptions={srcSetOptions}
-            className={styles.img}
-          />
-          <div>
+          <div className={styles.imageWrapper}>
+            <Image
+              data={product.variants.nodes[0].image}
+              alt={product.title}
+              srcSetOptions={srcSetOptions}
+              className={styles.img}
+            />
+          </div>
+          <div className={styles.textContainer}>
             <h3 className={styles.title}>{product.title}</h3>
             <div>
               <span className={styles.cost}>
