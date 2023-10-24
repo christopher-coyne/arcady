@@ -73,7 +73,7 @@ export default function Index() {
   const srcSetOptions2 = {
     intervals: 5,
     startingWidth: 320,
-    incrementSize: 1,
+    incrementSize: 160,
     placeholderWidth: 32,
   };
 
@@ -87,7 +87,7 @@ export default function Index() {
         image={imageObj}
         link="/collections/men"
         description={heroDescription}
-        title="Freedom To Escape"
+        title="FREEDOM TO ESCAPE"
       />
       <h2>Collections</h2>
       <div>
@@ -159,18 +159,19 @@ export default function Index() {
           />
         </div>
       </div>
-      <Stack orient="h">
-        <div>
+      <Stack orient="h" gap={'1.5rem'}>
+        <div className={styles.stackChild}>
           <Image
             data={{
               url: 'https://cdn.shopify.com/s/files/1/0557/9508/9496/files/finscolored.webp?v=1697662297',
               altText: 'fins',
-              width: 500,
             }}
             srcSetOptions={srcSetOptions2}
           />
         </div>
-        <Collapsible content={collapsibleBlurbs} />
+        <div className={styles.stackChild}>
+          <Collapsible content={collapsibleBlurbs} />
+        </div>
       </Stack>
     </section>
   );

@@ -12,6 +12,34 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Roboto';
+  src: url('/fonts/Roboto-Medium.ttf') format('truetype');
+  font-weight: medium;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('/fonts/Roboto-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('/fonts/Roboto-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Noto Sans';
+  src: url('/fonts/NotoSans-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 :root {
   --aside-width: 400px;
   --cart-aside-summary-height-with-discount: 300px;
@@ -37,11 +65,19 @@
 body {
   background-color: var(--color-background);
   color: white;
-  font-family: 'Montserrat';
+  font-family: 'Noto Sans';
+}
+
+a {
+  font-family: 'Noto Sans';
 }
 
 img {
   border-radius: 4px;
+}
+
+p {
+  line-height: 1.75rem;
 }
 
 h1,
