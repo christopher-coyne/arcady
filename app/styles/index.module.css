@@ -21,3 +21,17 @@ multimedia > div > img {
   flex-grow: 1;
   flex-shrink: 1;
 }
+
+.nathanContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+}
+
+.nathanContainer > img {
+  flex-basis: 75%;
+}
+
+.nathanContainer > div {
+  flex-basis: 25%;
+}

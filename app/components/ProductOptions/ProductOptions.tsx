@@ -5,6 +5,8 @@ import {
   useNavigation,
 } from '@remix-run/react';
 
+import React from 'react';
+
 import styles from './ProductOptions.module.css';
 
 export function ProductOptions({options, selectedVariant}: any) {
@@ -35,7 +37,7 @@ export function ProductOptions({options, selectedVariant}: any) {
     : paramsWithDefaults;
 
   return (
-    <div className="grid gap-4 mb-6">
+    <>
       {options.map((option: any) => {
         if (!option.values.length) {
           return;
@@ -50,17 +52,18 @@ export function ProductOptions({options, selectedVariant}: any) {
             <div>
               {option.values.map((value: any) => {
                 const linkParams = new URLSearchParams(searchParams);
-                console.log('currentOptionVal ', currentOptionVal);
-                console.log('value ', value);
                 const isSelected = currentOptionVal === value;
                 linkParams.set(option.name, value);
+                // return <div className={styles.productOption}>hello world </div>;
                 return (
                   <Link
                     key={value}
                     to={`${pathname}?${linkParams.toString()}`}
                     preventScrollReset
                     replace
-                    className={`${isSelected && styles.selected}`}
+                    className={`${styles.productOption} ${
+                      isSelected && styles.selected
+                    }`}
                   >
                     {value}
                   </Link>
@@ -70,6 +73,6 @@ export function ProductOptions({options, selectedVariant}: any) {
           </div>
         );
       })}
-    </div>
+    </>
   );
 }

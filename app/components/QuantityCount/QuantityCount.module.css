@@ -1,0 +1,27 @@
+.counter {
+  border: 1px solid white;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  width: 125px;
+  justify-content: space-between;
+  padding: 0rem;
+}
+
+.number {
+  margin: 0rem 1rem;
+}
+
+button {
+  background-color: transparent;
+  height: auto;
+  color: white;
+  margin: none;
+  font-size: 1rem;
+  padding: 1rem;
+  border: none;
+}
+
+button:hover {
+  cursor: pointer;
+}

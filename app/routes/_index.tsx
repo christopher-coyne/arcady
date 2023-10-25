@@ -1,12 +1,12 @@
 import {useLoaderData, Link} from '@remix-run/react';
 import {Image} from '@shopify/hydrogen';
-import {Collapsible} from '~/components/Collapsible/Collapsible';
 import styles from '../styles/index.module.css';
 import {Stack} from '~/components/Stack/Stack';
 import {HydroLink} from '~/components/Link/Link';
-import {Item, TestItem} from '~/components/Collapsible/Item';
-import {CollapsibleTest} from '~/components/Collapsible/Collapsible';
+import {Item} from '~/components/Collapsible/Item';
+import {Collapsible} from '~/components/Collapsible/Collapsible';
 import {Checkbox} from '~/components/Svgs/Checkbox';
+import {Page} from '~/components/Page/Page';
 
 import type {
   Product,
@@ -76,6 +76,12 @@ export default function Index() {
     url: 'https://cdn.shopify.com/s/files/1/0557/9508/9496/files/surfer_guy.jpg?v=1697649524',
   };
 
+  const nathanImageObj = {
+    altText: 'xyz',
+    id: 'nathan',
+    url: 'https://cdn.shopify.com/s/files/1/0557/9508/9496/files/nathan.webp?v=1698195926',
+  };
+
   const srcSetOptions2 = {
     intervals: 5,
     startingWidth: 320,
@@ -87,7 +93,7 @@ export default function Index() {
   console.log('collections ', collections);
 
   return (
-    <section>
+    <Page>
       <ImageAndText
         srcSetOptions={srcSetOptions}
         image={imageObj}
@@ -95,43 +101,15 @@ export default function Index() {
         description={heroDescription}
         title="FREEDOM TO ESCAPE"
       />
+      <div className={styles.nathanContainer}>
+        <Image data={nathanImageObj} />
+        <div>placeholder</div>
+      </div>
       <h2>Collections</h2>
       <div>
         {collections.nodes.length && (
           <ProductGridTest collection={collections.nodes[0].products} />
         )}
-        <ul>
-          {collections.nodes.length &&
-            collections.nodes[0].products.nodes.map((product: any) => {
-              console.log('data info ', product.images.edges[0].node);
-              let imageObj = null;
-              if (product.images.edges[0]) {
-                imageObj = {
-                  ...product.images.edges[0].node,
-                  url: product.images.edges[0].node.src,
-                };
-              }
-
-              return (
-                <li key={product.id}>
-                  <Link to={`/collections/${collections.nodes[0].handle}`}>
-                    <div>
-                      {imageObj && (
-                        <Image
-                          alt={`Image of ${product.title}`}
-                          data={imageObj}
-                          key={imageObj.id}
-                          sizes="(max-width: 32em) 100vw, 33vw"
-                          crop="center"
-                        />
-                      )}
-                      <h2>{product.title}</h2>
-                    </div>
-                  </Link>
-                </li>
-              );
-            })}
-        </ul>
       </div>
       {featuredProduct?.node && (
         <div id="featuredProduct">
@@ -148,7 +126,7 @@ export default function Index() {
         <Card
           description={finCardDescription}
           title="SWAP FINS ON THE FLY"
-          link={{text: 'Shop Fins', destination: '/collections'}}
+          link={{title: 'Shop Fins', destination: '/collections'}}
         />
         <div>
           <Image
@@ -176,29 +154,26 @@ export default function Index() {
           />
         </div>
         <div className={styles.stackChild}>
-          <CollapsibleTest>
-            <TestItem Icon={Leaf} title={collapsibleBlurbs.leaf.title}>
+          <Collapsible>
+            <Item Icon={Leaf} title={collapsibleBlurbs.leaf.title}>
               {collapsibleBlurbs.leaf.description}
-            </TestItem>
-            <TestItem
-              Icon={Lightning}
-              title={collapsibleBlurbs.lightning.title}
-            >
+            </Item>
+            <Item Icon={Lightning} title={collapsibleBlurbs.lightning.title}>
               {collapsibleBlurbs.lightning.description}
-            </TestItem>
-            <TestItem Icon={Fire} title={collapsibleBlurbs.fire.title}>
+            </Item>
+            <Item Icon={Fire} title={collapsibleBlurbs.fire.title}>
               {collapsibleBlurbs.fire.description}
-            </TestItem>
-            <TestItem Icon={Star} title={collapsibleBlurbs.star.title}>
+            </Item>
+            <Item Icon={Star} title={collapsibleBlurbs.star.title}>
               {collapsibleBlurbs.star.description}
-            </TestItem>
-            <TestItem Icon={Checkbox} title={collapsibleBlurbs.checkbox.title}>
+            </Item>
+            <Item Icon={Checkbox} title={collapsibleBlurbs.checkbox.title}>
               {collapsibleBlurbs.checkbox.description}
-            </TestItem>
-          </CollapsibleTest>
+            </Item>
+          </Collapsible>
         </div>
       </Stack>
-    </section>
+    </Page>
   );
 }
 const COLLECTIONS_QUERY = `#graphql

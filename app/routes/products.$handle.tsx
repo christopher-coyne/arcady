@@ -2,8 +2,11 @@ import {LoaderArgs, json} from '@shopify/remix-oxygen';
 import {useLoaderData} from '@remix-run/react';
 import {Image, Money, ShopPayButton} from '@shopify/hydrogen-react';
 import {ProductOptions} from '~/components/ProductOptions/ProductOptions';
+import {useState} from 'react';
 import {assertNullableType} from 'graphql';
 import styles from '../styles/product.module.css';
+
+import {QuantityCount} from '../components/QuantityCount/QuantityCount';
 
 export async function loader({params, context, request}: any) {
   console.log('LOADER RUNNING... ');
@@ -40,24 +43,29 @@ export async function loader({params, context, request}: any) {
 
 export default function ProductHandle() {
   const {shop, product, selectedVariant} = useLoaderData();
+  const [quantity, setQuantity] = useState(1);
+
+  console.log('product ', product.options);
 
   return (
     <section className={styles.productContainer}>
       <div>
-        <Image data={product.selectedVariant?.image || product.featuredImage} />
-      </div>
-      <div>
-        <h1>{product.title}</h1>
-        <span>{product.vendor}</span>
-        <h3>TODO Product Options</h3>
-        <ProductOptions
-          options={product.options}
-          selectedVariant={selectedVariant}
+        <Image
+          data={product.selectedVariant?.image || product.featuredImage}
+          className={styles.img}
         />
+      </div>
+      <div className={styles.descriptionContainer}>
+        <h1>{product.title}</h1>
         <Money
           withoutTrailingZeros
           data={selectedVariant.price}
           className="text-xl font-semibold mb-2"
+        />
+        <QuantityCount setQuantity={setQuantity} quantity={quantity} />
+        <ProductOptions
+          options={product.options}
+          selectedVariant={selectedVariant}
         />
         {selectedVariant.availableForSale && (
           <ShopPayButton

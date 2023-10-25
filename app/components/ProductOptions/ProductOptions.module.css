@@ -1,3 +1,17 @@
 .selected {
-  border: 2px solid yellow;
+  background-color: white;
+  color: black;
+}
+
+.productOption:hover {
+  text-decoration: none;
+}
+
+.productOption {
+  margin: 0.25rem;
+  display: inline-block;
+  border: 1px solid white;
+  border-radius: 50px;
+  padding: 0.5rem 1rem;
+  box-sizing: border-box !important;
 }
