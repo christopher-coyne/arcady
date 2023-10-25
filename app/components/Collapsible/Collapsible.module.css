@@ -18,6 +18,15 @@
   color: black;
   width: 100%;
   box-sizing: border-box;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.iconContainer {
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: row;
+  align-items: center;
 }
 
 .titleContainer:hover {

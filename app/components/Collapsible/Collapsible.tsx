@@ -10,6 +10,7 @@ export const Collapsible = ({content}: any) => {
         <Item
           key={c.title}
           title={c.title}
+          icon={c.icon}
           isOpen={open === c.title}
           setOpen={setOpen}
         >
@@ -18,4 +19,8 @@ export const Collapsible = ({content}: any) => {
       ))}
     </div>
   );
+};
+
+export const CollapsibleTest = ({children}: any) => {
+  return <div className={styles.collapsibleContainer}>{children}</div>;
 };

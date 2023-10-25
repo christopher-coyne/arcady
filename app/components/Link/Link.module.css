@@ -7,6 +7,15 @@
   color: black;
 }
 
+.link {
+  color: var(--color-primary);
+  font-size: 1rem;
+}
+
+.link:hover {
+  text-decoration: none;
+}
+
 .linkButton:hover {
   background-color: var(
     --color-primary-hover

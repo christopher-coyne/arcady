@@ -4,8 +4,8 @@ export const heroDescription =
 export const featuredProductDescription =
   'Flat and fast, the Kyuss King Fish is a small wave weapon that turns on a dime. This board will heighten the fun factor on those mushy days when you might not even paddle out.';
 
-export const collapsibleBlurbs = [
-  {
+export const collapsibleBlurbs = {
+  leaf: {
     title: 'LOW ENVIRONMENTAL IMPACT',
     description: (
       <>
@@ -22,7 +22,7 @@ export const collapsibleBlurbs = [
       </>
     ),
   },
-  {
+  lightning: {
     title: 'PREMIUM QUALITY',
     description: (
       <>
@@ -37,7 +37,7 @@ export const collapsibleBlurbs = [
       </>
     ),
   },
-  {
+  fire: {
     title: 'BUILT FOR PERFORMANCE',
     description: (
       <>
@@ -53,7 +53,7 @@ export const collapsibleBlurbs = [
       </>
     ),
   },
-  {
+  star: {
     title: 'INDUSTRY INNOVATION',
     description: (
       <>
@@ -66,7 +66,7 @@ export const collapsibleBlurbs = [
       </>
     ),
   },
-  {
+  checkbox: {
     title: 'SUPPORTS ALL RIDING STYLES',
     description: (
       <>
@@ -81,7 +81,7 @@ export const collapsibleBlurbs = [
       </>
     ),
   },
-];
+};
 
 export const finCardDescription =
   'Our tool-free fin system makes it easy to swap fins based on wave conditions or rider ability. It’s the ultimate hack to make any board your go-anywhere machine.';

@@ -4,7 +4,9 @@ import {Collapsible} from '~/components/Collapsible/Collapsible';
 import styles from '../styles/index.module.css';
 import {Stack} from '~/components/Stack/Stack';
 import {HydroLink} from '~/components/Link/Link';
-import {Item} from '~/components/Collapsible/Item';
+import {Item, TestItem} from '~/components/Collapsible/Item';
+import {CollapsibleTest} from '~/components/Collapsible/Collapsible';
+import {Checkbox} from '~/components/Svgs/Checkbox';
 
 import type {
   Product,
@@ -22,6 +24,10 @@ import {
 import {Card} from '~/components/Card/Card';
 import ProductGrid from '~/components/ProductGrid';
 import ProductGridTest from '~/components/ProductGrid/ProductGrid';
+import {Leaf} from '~/components/Svgs/Leaf';
+import {Lightning} from '~/components/Svgs/Lightning';
+import {Fire} from '~/components/Svgs/Fire';
+import {Star} from '~/components/Svgs/Star';
 
 export function meta() {
   return [{title: 'Hydrogen'}, {description: 'Our Custom Store'}];
@@ -142,7 +148,7 @@ export default function Index() {
         <Card
           description={finCardDescription}
           title="SWAP FINS ON THE FLY"
-          link="Shop Fins"
+          link={{text: 'Shop Fins', destination: '/collections'}}
         />
         <div>
           <Image
@@ -170,7 +176,26 @@ export default function Index() {
           />
         </div>
         <div className={styles.stackChild}>
-          <Collapsible content={collapsibleBlurbs} />
+          <CollapsibleTest>
+            <TestItem Icon={Leaf} title={collapsibleBlurbs.leaf.title}>
+              {collapsibleBlurbs.leaf.description}
+            </TestItem>
+            <TestItem
+              Icon={Lightning}
+              title={collapsibleBlurbs.lightning.title}
+            >
+              {collapsibleBlurbs.lightning.description}
+            </TestItem>
+            <TestItem Icon={Fire} title={collapsibleBlurbs.fire.title}>
+              {collapsibleBlurbs.fire.description}
+            </TestItem>
+            <TestItem Icon={Star} title={collapsibleBlurbs.star.title}>
+              {collapsibleBlurbs.star.description}
+            </TestItem>
+            <TestItem Icon={Checkbox} title={collapsibleBlurbs.checkbox.title}>
+              {collapsibleBlurbs.checkbox.description}
+            </TestItem>
+          </CollapsibleTest>
         </div>
       </Stack>
     </section>
