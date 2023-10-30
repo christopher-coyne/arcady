@@ -1,7 +1,12 @@
 import {Link} from '@remix-run/react';
 import styles from './Link.module.css';
 
-export const LinkButton = ({link, title}: any) => {
+type LinkProps = {
+  link: string;
+  title: string;
+};
+
+export const LinkButton = ({link, title}: LinkProps) => {
   return (
     <Link to={link} className={styles.linkButton}>
       {title}

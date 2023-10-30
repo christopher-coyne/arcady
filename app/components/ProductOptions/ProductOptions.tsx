@@ -5,8 +5,6 @@ import {
   useNavigation,
 } from '@remix-run/react';
 
-import React from 'react';
-
 import styles from './ProductOptions.module.css';
 
 export function ProductOptions({options, selectedVariant}: any) {

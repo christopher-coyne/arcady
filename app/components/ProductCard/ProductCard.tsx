@@ -3,9 +3,17 @@ import {Image, Money} from '@shopify/hydrogen';
 import {Product} from '@shopify/hydrogen/storefront-api-types';
 import styles from './ProductCard.module.css';
 
-export default function ProductCard({product}: any) {
-  const {price, compareAtPrice} = product.variants?.nodes[0] || {};
-  const isDiscounted = compareAtPrice?.amount > price?.amount;
+type ProductCardProps = {
+  product: Product;
+};
+
+export default function ProductCard({product}: ProductCardProps) {
+  const {price, compareAtPrice} = product.variants?.nodes[0] ?? undefined;
+  const isDiscounted = compareAtPrice?.amount
+    ? compareAtPrice?.amount > price?.amount
+    : false;
+
+  const imageData = product?.variants?.nodes[0]?.image ?? undefined;
 
   const srcSetOptions = {
     intervals: 5,
@@ -20,19 +28,21 @@ export default function ProductCard({product}: any) {
         <div>
           {isDiscounted && <label>Sale</label>}
           <div className={styles.imageWrapper}>
-            <Image
-              data={product.variants.nodes[0].image}
-              alt={product.title}
-              srcSetOptions={srcSetOptions}
-              className={styles.img}
-            />
+            {imageData && (
+              <Image
+                data={imageData}
+                alt={product.title}
+                srcSetOptions={srcSetOptions}
+                className={styles.img}
+              />
+            )}
           </div>
           <div className={styles.textContainer}>
             <h3 className={styles.title}>{product.title}</h3>
             <div>
               <span className={styles.cost}>
                 <Money withoutTrailingZeros data={price} />
-                {isDiscounted && (
+                {compareAtPrice && (
                   <Money withoutTrailingZeros data={compareAtPrice} />
                 )}
               </span>

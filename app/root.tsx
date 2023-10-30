@@ -126,7 +126,9 @@ export default function App() {
       </head>
       <body>
         <Layout {...data}>
-          <Outlet />
+          <div style={{padding: '2rem'}}>
+            <Outlet />
+          </div>
         </Layout>
         <ScrollRestoration nonce={nonce} />
         <Scripts nonce={nonce} />

@@ -7,6 +7,7 @@ import {DropdownArrow} from '../Svgs/DropdownArrow';
 // const CheckBox = lazy(() => import('../Svgs/Checkbox'));
 // const ComponentB = lazy(() => import('./ComponentB'));
 
+/*
 export const Item = ({title, children, isOpen, setOpen, icon}: any) => {
   console.log('icon ', icon);
 
@@ -26,8 +27,15 @@ export const Item = ({title, children, isOpen, setOpen, icon}: any) => {
     </div>
   );
 };
+*/
 
-export const TestItem = ({title, children, Icon}: any) => {
+type ItemProps = {
+  title: string;
+  children: React.ReactNode;
+  Icon: React.ReactNode;
+};
+
+export const Item = ({title, children, Icon}: any) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleClick = () => {

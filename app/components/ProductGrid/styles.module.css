@@ -12,3 +12,11 @@
 .product {
   border: 1px solid red;
 }
+
+.headerContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  gap: 1.5rem;
+  align-items: center;
+}
